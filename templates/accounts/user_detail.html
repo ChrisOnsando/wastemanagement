@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}User Detail{% endblock %}
+
+{% block content %}
+<h3>User: {{user.username}}</h3>
+<p><strong>Email: </strong>{{user.email}}</p>
+<p><strong>Role: </strong>
+    {% if user.is_driver %}Driver{% elif user.is_customer %}Customer{% else %}Staff{% endif %}
+</p>
+<h4><a href="{% url 'user-update' user.id %}">Update User</a></h4>
+<h4><a href="{% url 'user-delete' user.id %}">Delete User</a></h4>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Complaints{% endblock %}
+
+{% block content %}
+
+<h3>All complaints</h3>
+
+{% if complaint_list %}
+
+    {% for complaints in complaint_list %}
+    <p><a href="{% url 'complaint-detail' complaints.pk %}">{{ complaints.bin }}</a></p>
+    {% endfor %}
+{% else %}
+
+    <p>No complaints</p>
+
+{% endif %}
+
+
+
+{%endblock%}

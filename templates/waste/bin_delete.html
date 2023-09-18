@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Bin{% endblock %}
+
+{% block content %}
+
+<h1>Delete Bin {{bin.id}} | {{bin.area}}</h1>
+
+<p>Are you sure you want to delete the bin?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete." />
+</form>
+
+{% endblock %}

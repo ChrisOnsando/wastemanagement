@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}My Bins{% endblock %}
+
+{% block content %}
+<h2>My Bins</h2>
+
+{% if user.is_authenticated and user.is_driver %}
+    {% if bin_list %}
+        <ul>
+            {% for bin in bin_list %}
+            <li>
+                <a href="{{ bin.get_absolute_url }}">{{ bin.area }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No bins allocated yet</h3>
+    {% endif %}
+{% endif %}
+
+{% endblock %}

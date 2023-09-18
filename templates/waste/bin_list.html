@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}All Bins{% endblock %}
+
+{% block content %}
+<h2>All Bins</h2>
+{% if user.is_staff %}
+<h4 class="button"><a href="{% url 'bin-create' %}">Create Bin</a></h4>
+{% endif %}
+<ul>
+    {% for bin in bin_list %}
+    <li>
+        <a href="{{ bin.get_absolute_url }}">{{ bin.area }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

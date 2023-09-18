@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}My Complaints{% endblock %}
+
+{% block content %}
+<h2>My Complaints</h2>
+{% if user.is_authenticated %}
+<h4 class="button"><a href="{% url 'complaint-create' %}">Create New Complaint</a></h4>
+{% endif %}
+    {% if complaint_list %}
+        <ul>
+            {% for complaint in complaint_list %}
+            <li>
+                <a href="{{ complaint.get_absolute_url }}">{{ complaint.bin }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>No Complaints</h3>
+    {% endif %}
+{% endblock %}

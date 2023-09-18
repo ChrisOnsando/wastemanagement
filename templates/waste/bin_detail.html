@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Bin Detail{% endblock %}
+
+{% block content %}
+<h2>Bin: {{bin.id}} | Area: {{ bin.area }}</h2>
+
+<p><strong>Locality: </strong>{{ bin.locality }}</p>
+<p><strong>Landmark: </strong>{{bin.landmark}}</p>
+<p><strong>City: </strong>{{bin.city}}</p>
+<p><strong>Driver: </strong>{{bin.driveremail}}</p>
+<p><strong>Load Type: </strong>{{bin.loadtype}}</p>
+<p><strong>Best Route: </strong>{{bin.best_route}}</p>
+
+{% if user.is_staff %}
+<h4 class="button"><a href="{% url 'bin-update' bin.id %}">Update Bin</a></h4>
+<h4 class="button"><a href="{% url 'bin-delete' bin.id %}">Delete Bin</a></h4>
+{% endif %}
+{% endblock %}

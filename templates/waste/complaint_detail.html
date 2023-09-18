@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Complaint Detail{% endblock %}
+
+{% block content %}
+
+<h3>Complaint: {{complaint.bin}}</h3>
+<p><strong>Complaint: </strong>{{ complaint.complaint}}</p>
+<p><strong>Complaint Status: </strong>{{ complaint.status}}</p>
+
+{% if user.is_customer %}
+<h4 class="button"><a href="{% url 'complaint-delete' complaint.id %}">Delete Complaint</a></h4>
+{% endif %}
+
+{% if user.is_staff %}
+<h4 class="button"><a href="{% url 'complaint-update' complaint.id %}">Update Complaint</a></h4>
+{% endif %}
+{% endblock %}

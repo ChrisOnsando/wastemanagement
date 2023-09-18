@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Complains{% endblock %}
+
+{% block content %}
+<h2>Complains related to your bins</h2>
+
+{% if user.is_authenticated and user.is_driver %}
+{% if complaint_list %}
+    {% for complaint in complaint_list %}
+        <h3>{{complaint.bin}}</h3>
+        <p>{{ complaint.complaint }}</p>
+    {% endfor %}
+{% else %}
+<h3>No complaints yet</h3>
+{% endif %}
+{% endif %}
+
+{% endblock %}
