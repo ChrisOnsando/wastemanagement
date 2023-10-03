@@ -3,20 +3,85 @@
 {% block title %}My Bins{% endblock %}
 
 {% block content %}
-<h2>My Bins</h2>
+<div class="bins-container">
+    <h2>My Bins</h2>
 
-{% if user.is_authenticated and user.is_driver %}
-    {% if bin_list %}
-        <ul>
-            {% for bin in bin_list %}
-            <li>
-                <a href="{{ bin.get_absolute_url }}">{{ bin.area }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <h3>No bins allocated yet</h3>
+    {% if user.is_authenticated and user.is_driver %}
+        {% if bin_list %}
+            <table class="bins-table">
+                <thead>
+                    <tr>
+                        <th>Bin Area</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bin in bin_list %}
+                        <tr>
+                            <td>
+                                <a href="{{ bin.get_absolute_url }}">{{ bin.area }}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>No bins allocated yet</h3>
+        {% endif %}
     {% endif %}
-{% endif %}
+</div>
 
+<style>
+    .bins-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .bins-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .bins-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+
+    .bins-table th,
+    .bins-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+</style>
 {% endblock %}
+

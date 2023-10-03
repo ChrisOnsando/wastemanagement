@@ -3,16 +3,48 @@
 {% block title %}Complaint Detail{% endblock %}
 
 {% block content %}
+<div class="complaint-detail-container">
+    <h3>Complaint: {{ complaint.bin }}</h3>
+    <p><strong>Complaint: </strong>{{ complaint.complaint }}</p>
+    <p><strong>Complaint Status: </strong>{{ complaint.status }}</p>
+    
+    {% if user.is_customer %}
+        <h4 class="button"><a href="{% url 'complaint-delete' complaint.id %}">Delete Complaint</a></h4>
+    {% endif %}
+    
+    {% if user.is_staff %}
+        <h4 class="button"><a href="{% url 'complaint-update' complaint.id %}">Update Complaint</a></h4>
+    {% endif %}
+</div>
 
-<h3>Complaint: {{complaint.bin}}</h3>
-<p><strong>Complaint: </strong>{{ complaint.complaint}}</p>
-<p><strong>Complaint Status: </strong>{{ complaint.status}}</p>
+<style>
+    .complaint-detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-{% if user.is_customer %}
-<h4 class="button"><a href="{% url 'complaint-delete' complaint.id %}">Delete Complaint</a></h4>
-{% endif %}
+    .button {
+        margin-top: 20px;
+    }
 
-{% if user.is_staff %}
-<h4 class="button"><a href="{% url 'complaint-update' complaint.id %}">Update Complaint</a></h4>
-{% endif %}
+    .button a {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    .button a:hover {
+        background-color: #0056b3;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+</style>
 {% endblock %}

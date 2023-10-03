@@ -1,14 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="delete-complaint-container">
+    <h1>Delete Complaint {{ complaint.id }}</h1>
+    <p>Are you sure you want to delete this Complaint?</p>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="delete-button" value="Yes, delete." />
+    </form>
+</div>
 
-<h1>Delete Complaint {{complaint.id}}</h1>
+<style>
+    .delete-complaint-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-<p>Are you sure you want to delete this Complaint?</p>
+    .delete-button {
+        margin-top: 20px;
+        background-color: #d9534f; /* Red color */
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete." />
-</form>
+    .delete-button:hover {
+        background-color: #c9302c; /* Darker red color on hover */
+    }
 
+    h1 {
+        font-size: 24px;
+    }
+</style>
 {% endblock %}

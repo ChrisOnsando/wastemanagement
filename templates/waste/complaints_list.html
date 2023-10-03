@@ -3,20 +3,82 @@
 {% block title %}Complaints{% endblock %}
 
 {% block content %}
+<div class="complaints-container">
+    <h3>All Complaints</h3>
 
-<h3>All complaints</h3>
+    {% if complaint_list %}
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>Complaint</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaint_list %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'complaint-detail' complaint.pk %}">{{ complaint.bin }}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No Complaints</p>
+    {% endif %}
+</div>
 
-{% if complaint_list %}
+<style>
+    .complaints-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    {% for complaints in complaint_list %}
-    <p><a href="{% url 'complaint-detail' complaints.pk %}">{{ complaints.bin }}</a></p>
-    {% endfor %}
-{% else %}
+    h3 {
+        font-size: 24px;
+    }
 
-    <p>No complaints</p>
+    .complaints-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
 
-{% endif %}
+    .complaints-table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
 
+    .complaints-table th,
+    .complaints-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
 
+    ul {
+        list-style: none;
+        padding: 0;
+    }
 
-{%endblock%}
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}

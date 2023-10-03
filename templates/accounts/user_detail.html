@@ -3,11 +3,78 @@
 {% block title %}User Detail{% endblock %}
 
 {% block content %}
-<h3>User: {{user.username}}</h3>
-<p><strong>Email: </strong>{{user.email}}</p>
-<p><strong>Role: </strong>
-    {% if user.is_driver %}Driver{% elif user.is_customer %}Customer{% else %}Staff{% endif %}
-</p>
-<h4><a href="{% url 'user-update' user.id %}">Update User</a></h4>
-<h4><a href="{% url 'user-delete' user.id %}">Delete User</a></h4>
+<div class="user-detail-container">
+    <h2>User Detail</h2>
+    <h3>User: {{ user.username }}</h3>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Role:</strong>
+        {% if user.is_driver %}
+            Driver
+        {% elif user.is_customer %}
+            Customer
+        {% else %}
+            Staff
+        {% endif %}
+    </p>
+    <div class="user-actions">
+        <a href="{% url 'user-update' user.id %}" class="btn btn-primary">Update User</a>
+        <a href="{% url 'user-delete' user.id %}" class="btn btn-danger">Delete User</a>
+    </div>
+</div>
+
+<style>
+    .user-detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        margin-top: 10px;
+        font-size: 20px;
+    }
+
+    p {
+        margin-top: 10px;
+    }
+
+    .user-actions {
+        margin-top: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-right: 10px;
+        text-decoration: none;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+</style>
 {% endblock %}

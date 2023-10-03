@@ -3,11 +3,49 @@
 {% block title %}Create Bin{% endblock %}
 
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit" />
-</form>
+<div class="create-bin-container">
+    <form action="" method="post">
+        {% csrf_token %}
+        <table class="create-bin-table">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Submit" class="submit-button" />
+    </form>
+</div>
+
+<style>
+    .create-bin-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .create-bin-table {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .create-bin-table th,
+    .create-bin-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+</style>
 {% endblock %}

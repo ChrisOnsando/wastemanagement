@@ -3,17 +3,95 @@
 {% block title %}Bin Detail{% endblock %}
 
 {% block content %}
-<h2>Bin: {{bin.id}} | Area: {{ bin.area }}</h2>
+<div class="bin-detail-container">
+    <h2>Bin: {{ bin.id }} | Area: {{ bin.area }}</h2>
+    <table class="bin-detail-table">
+        <tr>
+            <td><strong>Locality:</strong></td>
+            <td>{{ bin.locality }}</td>
+        </tr>
+        <tr>
+            <td><strong>Landmark:</strong></td>
+            <td>{{ bin.landmark }}</td>
+        </tr>
+        <tr>
+            <td><strong>City:</strong></td>
+            <td>{{ bin.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Driver:</strong></td>
+            <td>{{ bin.driveremail }}</td>
+        </tr>
+        <tr>
+            <td><strong>Load Type:</strong></td>
+            <td>{{ bin.loadtype }}</td>
+        </tr>
+        <tr>
+            <td><strong>Best Route:</strong></td>
+            <td>{{ bin.best_route }}</td>
+        </tr>
+    </table>
 
-<p><strong>Locality: </strong>{{ bin.locality }}</p>
-<p><strong>Landmark: </strong>{{bin.landmark}}</p>
-<p><strong>City: </strong>{{bin.city}}</p>
-<p><strong>Driver: </strong>{{bin.driveremail}}</p>
-<p><strong>Load Type: </strong>{{bin.loadtype}}</p>
-<p><strong>Best Route: </strong>{{bin.best_route}}</p>
+    {% if user.is_staff %}
+    <div class="button-container">
+        <h4 class="button"><a href="{% url 'bin-update' bin.id %}">Update Bin</a></h4>
+        <h4 class="button"><a href="{% url 'bin-delete' bin.id %}">Delete Bin</a></h4>
+    </div>
+    {% endif %}
+</div>
 
-{% if user.is_staff %}
-<h4 class="button"><a href="{% url 'bin-update' bin.id %}">Update Bin</a></h4>
-<h4 class="button"><a href="{% url 'bin-delete' bin.id %}">Delete Bin</a></h4>
-{% endif %}
+<style>
+    .bin-detail-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .bin-detail-table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .bin-detail-table td {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: left;
+    }
+
+    .bin-detail-table td:first-child {
+        font-weight: bold;
+        width: 30%;
+    }
+
+    .button-container {
+        margin-top: 20px;
+    }
+
+    .button {
+        display: inline-block;
+        margin-right: 20px;
+    }
+
+    .button a {
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .button a:hover {
+        background-color: #0056b3;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+</style>
 {% endblock %}

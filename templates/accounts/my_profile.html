@@ -3,25 +3,89 @@
 {% block title %}Profile{% endblock %}
 
 {% block content %}
+<div class="profile-container">
     {% if user.is_driver %}
     <h2>Hello, {{ driver.user }}</h2>
-    <p><strong>Name: </strong>{{ driver.name }}</p>
-    <p><strong>City: </strong>{{ driver.city }}</p>
-    <p><strong>Address: </strong>{{ driver.address }}</p>
-    <p><strong>Contact: </strong>{{ driver.contact }}</p>
+    <table>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ driver.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>City:</strong></td>
+            <td>{{ driver.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ driver.address }}</td>
+        </tr>
+        <tr>
+            <td><strong>Contact:</strong></td>
+            <td>{{ driver.contact }}</td>
+        </tr>
+    </table>
 
     <h4><a href="{% url 'driver-update' user.id %}">Update Profile</a></h4>
     <h4><a href="{% url 'driver-delete' user.id %}">Delete Account</a></h4>
 
     {% elif user.is_customer %}
     <h2>Hello, {{ customer.user }}</h2>
-    <p><strong>Name: </strong>{{ customer.name }}</p>
-    <p><strong>City: </strong>{{ customer.city }}</p>
-    <p><strong>Address: </strong>{{ customer.address }}</p>
+    <table>
+        <tr>
+            <td><strong>Name:</strong></td>
+            <td>{{ customer.name }}</td>
+        </tr>
+        <tr>
+            <td><strong>City:</strong></td>
+            <td>{{ customer.city }}</td>
+        </tr>
+        <tr>
+            <td><strong>Address:</strong></td>
+            <td>{{ customer.address }}</td>
+        </tr>
+    </table>
 
     <h4><a href="{% url 'customer-update' user.id %}">Update Profile</a></h4>
     <h4><a href="{% url 'customer-delete' user.id %}">Delete Account</a></h4>
-
-
     {% endif %}
+</div>
+
+<style>
+    .profile-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+    }
+
+    table td {
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+    }
+
+    h4 {
+        margin-top: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+</style>
 {% endblock %}

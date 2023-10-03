@@ -1,19 +1,82 @@
 {% extends 'base.html' %}
 
-{% block title %}Complains{% endblock %}
+{% block title %}Complaints{% endblock %}
 
 {% block content %}
-<h2>Complains related to your bins</h2>
+<div class="complaints-container">
+    <h2>Complaints related to your bins</h2>
 
-{% if user.is_authenticated and user.is_driver %}
-{% if complaint_list %}
-    {% for complaint in complaint_list %}
-        <h3>{{complaint.bin}}</h3>
-        <p>{{ complaint.complaint }}</p>
-    {% endfor %}
-{% else %}
-<h3>No complaints yet</h3>
-{% endif %}
-{% endif %}
+    {% if user.is_authenticated and user.is_driver %}
+        {% if complaint_list %}
+            <table class="complaints-table">
+                <thead>
+                    <tr>
+                        <th>Bin</th>
+                        <th>Complaint</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in complaint_list %}
+                        <tr>
+                            <td>{{ complaint.bin }}</td>
+                            <td>{{ complaint.complaint }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>No complaints yet</h3>
+        {% endif %}
+    {% endif %}
+</div>
 
+<style>
+    .complaints-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .complaints-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    .complaints-table th,
+    .complaints-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    ul li a:hover {
+        text-decoration: underline;
+    }
+
+    h3 {
+        margin-top: 10px;
+    }
+</style>
 {% endblock %}

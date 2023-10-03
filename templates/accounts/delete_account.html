@@ -3,12 +3,50 @@
 {% block title %}Delete Account{% endblock %}
 
 {% block content %}
+<div class="delete-account-container">
+    <h2>Delete Account</h2>
+    <p>Are you sure you want to delete your account?</p>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="delete-button">Yes, delete</button>
+    </form>
+</div>
 
-<p>Are you sure you want to delete your account?</p>
+<style>
+    .delete-account-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete." />
-</form>
+    h2 {
+        font-size: 24px;
+    }
 
+    p {
+        margin-top: 10px;
+    }
+
+    .delete-button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .delete-button:hover {
+        background-color: #d32f2f;
+    }
+</style>
 {% endblock %}

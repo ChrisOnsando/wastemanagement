@@ -3,19 +3,74 @@
 {% block title %}My Complaints{% endblock %}
 
 {% block content %}
-<h2>My Complaints</h2>
-{% if user.is_authenticated %}
-<h4 class="button"><a href="{% url 'complaint-create' %}">Create New Complaint</a></h4>
-{% endif %}
+<div class="complaints-container">
+    <h2>My Complaints</h2>
+    {% if user.is_authenticated %}
+        <h4 class="button"><a href="{% url 'complaint-create' %}">Create New Complaint</a></h4>
+    {% endif %}
+    
     {% if complaint_list %}
-        <ul>
-            {% for complaint in complaint_list %}
-            <li>
-                <a href="{{ complaint.get_absolute_url }}">{{ complaint.bin }}</a>
-            </li>
-            {% endfor %}
-        </ul>
+        <table class="complaints-table">
+            <thead>
+                <tr>
+                    <th>Complaint</th>
+                    <th>Complaint Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for complaint in complaint_list %}
+                <tr>
+                    <td><a href="{{ complaint.get_absolute_url }}">{{ complaint.bin }}</a></td>
+                    <td>{{ complaint.status }}</td>
+                    <td>
+                        <a href="{% url 'complaint-delete' complaint.id %}" class="button">Delete</a>
+                        <a href="{% url 'complaint-update' complaint.id %}" class="button">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     {% else %}
         <h3>No Complaints</h3>
     {% endif %}
+</div>
+
+<style>
+    .complaints-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .complaints-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .complaints-table th, .complaints-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .complaints-table th {
+        background-color: #f2f2f2;
+    }
+
+    .button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 3px;
+        margin-right: 5px;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
 {% endblock %}
+

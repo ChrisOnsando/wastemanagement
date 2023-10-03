@@ -3,14 +3,56 @@
 {% block title %}Delete Bin{% endblock %}
 
 {% block content %}
+<div class="delete-bin-container">
+    <h1>Delete Bin {{ bin.id }} | {{ bin.area }}</h1>
+    <p>Are you sure you want to delete the bin?</p>
 
-<h1>Delete Bin {{bin.id}} | {{bin.area}}</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table class="delete-bin-table">
+            <tr>
+                <td><input type="submit" value="Yes, delete." class="delete-button" /></td>
+            </tr>
+        </table>
+    </form>
+</div>
 
-<p>Are you sure you want to delete the bin?</p>
+<style>
+    .delete-bin-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Yes, delete." />
-</form>
+    .delete-bin-table {
+        width: 100%;
+        margin-top: 20px;
+    }
 
+    .delete-button {
+        background-color: #dc3545;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .delete-button:hover {
+        background-color: #c82333;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+</style>
 {% endblock %}
