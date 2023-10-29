@@ -1,6 +1,8 @@
 from django import forms
 from waste.models import Complaint
 
+from django import forms
+
 
 class NewComplaintForm(forms.ModelForm):
     """

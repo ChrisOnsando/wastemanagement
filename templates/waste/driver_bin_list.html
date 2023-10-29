@@ -5,6 +5,7 @@
 {% block content %}
 <div class="bins-container">
     <h2>My Bins</h2>
+    <button class="back-button" onclick="goBack()">Go Back</button> <!-- Back button -->
 
     {% if user.is_authenticated and user.is_driver %}
         {% if bin_list %}
@@ -61,6 +62,19 @@
         padding: 8px;
     }
 
+    .back-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 5px 10px;
+        text-decoration: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+
     ul {
         list-style: none;
         padding: 0;
@@ -83,5 +97,11 @@
         margin-top: 10px;
     }
 </style>
-{% endblock %}
 
+<script>
+    // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock %}

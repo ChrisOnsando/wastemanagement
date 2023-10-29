@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="create-bin-container">
+    <button class="back-button" onclick="goBack()">Go Back</button> <!-- Back button -->
     <form action="" method="post">
         {% csrf_token %}
         <table class="create-bin-table">
@@ -35,6 +36,19 @@
         text-align: left;
     }
 
+    .back-button {
+        background-color: #ccc;
+        color: #000;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .back-button:hover {
+        background-color: #aaa;
+    }
+
     .submit-button {
         background-color: #007bff;
         color: #fff;
@@ -48,4 +62,27 @@
         background-color: #0056b3;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        $("#loadtype").on("change", function() {
+            $.ajax({
+                url: "/calculate-price/",
+                data: {
+                    loadtype: $(this).val(),
+                },
+                success: function(data) {
+                    $("#price").val(data);
+                }
+            });
+        });
+    });
+</script>
+
+<script>
+    // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}
+

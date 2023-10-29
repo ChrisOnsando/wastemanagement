@@ -4,6 +4,7 @@
 
 {% block content %}
 <div class="bin-update-container">
+    <button class="back-button" onclick="goBack()">Go Back</button> <!-- Back button -->
     <h2>Bin Update</h2>
     <form action="" method="post">
         {% csrf_token %}
@@ -51,8 +52,29 @@
         background-color: #0056b3;
     }
 
+    .back-button {
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    .back-button:hover {
+        background-color: #0056b3;
+    }
+
     h2 {
         font-size: 24px;
     }
 </style>
+
+<script>
+    // JavaScript function to go back to the previous page
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

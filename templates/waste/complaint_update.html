@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="complaint-update">
+    <h1>Update Complaint</h1>
+    <form method="post" class="complaint-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="update-button">Update Complaint</button>
+    </form>
+    <a href="{% url 'complaint-detail' complaint.id %}" class="back-link">Back to Complaint</a>
+  </div>
+{% endblock %}
+<style>
+  /* Add CSS styles here */
+  .complaint-update {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .complaint-form {
+    margin-top: 20px;
+  }
+
+  .update-button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .update-button:hover {
+    background-color: #0056b3;
+  }
+
+  .back-link {
+    display: block;
+    margin-top: 10px;
+    color: #007BFF;
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    text-decoration: underline;
+  }
+</style>

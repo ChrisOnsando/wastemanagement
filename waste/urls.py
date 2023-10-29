@@ -14,10 +14,12 @@ from waste.views import (
     BinDriverListView,
     DriverComplaintListView,
 )
+from waste.views import download_receipt_as_pdf
 
 urlpatterns = [
     path("bins/", BinListView.as_view(), name="bins"),
     path("bin/<int:pk>/", BinDetailView.as_view(), name="bin-detail"),
+    path('bin_receipt/<int:bin_id>/', download_receipt_as_pdf, name='bin-receipt-pdf'),
     path("bin/create/", BinCreate.as_view(), name="bin-create"),
     path("bin/<int:pk>/update/", BinUpdate.as_view(), name="bin-update"),
     path("bin/<int:pk>/delete/", BinDelete.as_view(), name="bin-delete"),
